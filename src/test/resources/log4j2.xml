@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="Info">
+
+	<Properties>
+		<property name="basePath">./test-output-result/logs</property>
+	</Properties>
+	
+	<Appenders>
+		<console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</console>
+
+		<RollingFile name="File"
+		 	fileName="${basePath}/execution_log_${date:dd-MMM-yy}.log"
+			filePattern="${basePath}/execution_log_%d{dd-MMM-yy}.log">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+			<SizeBasedTriggeringPolicy size="50000" />
+		</RollingFile>
+	</Appenders>
+	
+	<Loggers>
+		<Root level="Info"><!--<Here you can use multiple log levels All < Trace < Debug < Info < Warn < Error < Fatal < Off -->
+			<!--<AppenderRef ref="Console"/>-->
+			<AppenderRef ref="File" />
+		</Root>
+	</Loggers>
+</configuration>
